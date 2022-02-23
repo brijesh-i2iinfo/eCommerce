@@ -72,6 +72,20 @@ const styles = theme => ({
       boxShadow: 'none',
     },
   },
+  darkFont: {
+    color: '#77a464',
+    fontSize: '1.25em',
+    marginRight: '10px',
+    opacity: '0.5',
+  },
+  LightFont: {
+    color: '#77a464',
+    fontSize: '1.25em',
+    fontWeight: '400',
+  },
+  bgColor: {
+    background: '#f2f2f2',
+  },
 })
 
 const useStyles = makeStyles(styles)
@@ -135,15 +149,21 @@ const Product = React.memo(lazyProps => {
 
   const header = (
     <Row>
-      <Typography variant="h6" component="h1" gutterBottom>
-        {product ? <Text bind="product.name" /> : <Skeleton style={{ height: '1em' }} />}
-      </Typography>
       <Hbox>
         <Typography style={{ marginRight: theme.spacing(2) }}>
-          <Text bind="product.priceText" />
+          <del className={classes.darkFont}>
+            <Text bind="product.priceText" />
+          </del>
+          <span className={classes.LightFont}>
+            <Text bind="product.priceText" />
+          </span>
         </Typography>
-        <Rating value={product.rating} reviewCount={10} />
+        {/* <Rating value={product.rating} reviewCount={10} /> */}
       </Hbox>
+      <Typography variant="h4" component="h1" gutterBottom>
+        {product ? <Text bind="product.name" /> : <Skeleton style={{ height: '1em' }} />}
+      </Typography>
+      <Button variant="contained">LAST 20 PRODUCTS - SPECIAL OFFER</Button>
     </Row>
   )
 
@@ -198,7 +218,7 @@ const Product = React.memo(lazyProps => {
                 />
               </LazyHydrate>
             </Grid>
-            <Grid item xs={12} sm={6} md={7}>
+            <Grid item xs={12} sm={6} md={7} className={classes.bgColor}>
               <LazyHydrate id="options">
                 <Grid container spacing={4}>
                   <Grid item xs={12}>

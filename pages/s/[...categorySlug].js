@@ -121,19 +121,19 @@ const Subcategory = lazyProps => {
           <BackToTop />
           <Hbox align="flex-start">
             <Hidden implementation="css" xsDown>
-              <div className={classes.sideBar}>
-                <Hidden xsDown>
-                  {/* Display the filters for desktop screen sizes */}
-                  <Filter classes={{ root: classes.sideBar }} expandAll submitOnChange />
-                </Hidden>
-              </div>
+              {/* <div className={classes.sideBar}> */}
+              {/* <Hidden xsDown> */}
+              {/* Display the filters for desktop screen sizes */}
+              {/* <Filter classes={{ root: classes.sideBar }} expandAll submitOnChange /> */}
+              {/* </Hidden> */}
+              {/* </div> */}
             </Hidden>
             <Grid container style={{ position: 'relative' }}>
               <LoadMask show={store.reloading} transparent align="top" />
               <Grid item xs={12}>
                 {!loading ? (
-                  <Typography component="h1" variant="h6" gutterBottom>
-                    {pageData.name}
+                  <Typography component="h1" variant="h4" gutterBottom>
+                    Trending items
                   </Typography>
                 ) : (
                   <Skeleton height={32} style={{ marginBottom: theme.spacing(1) }} />
@@ -147,10 +147,10 @@ const Subcategory = lazyProps => {
               </Grid>
               <Grid item xs={6} style={{ display: 'flex', justifyContent: 'flex-end' }}>
                 {/* The sort button is automatically responsive.  It will show as a dropdown on desktop, and open a drawer on mobile */}
-                <SortButton className={classes.sortButton} />
+                View More
               </Grid>
-              <Grid item xs={6}></Grid>
-              <Grid item xs={12} style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              {/* <Grid item xs={6}></Grid> */}
+              {/* <Grid item xs={12} style={{ display: 'flex', justifyContent: 'flex-end' }}>
                 {loading ? (
                   <Skeleton
                     width={90}
@@ -165,7 +165,7 @@ const Subcategory = lazyProps => {
                     </span>
                   </Typography>
                 )}
-              </Grid>
+              </Grid> */}
               <Grid item xs={12}>
                 {!loading ? (
                   <ResponsiveTiles autoScrollToNewTiles>
