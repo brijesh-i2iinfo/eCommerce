@@ -53,7 +53,7 @@ export default function SuggestedProducts({ product }) {
   return (
     <div>
       <Typography variant="h6" component="h3">
-        Suggested Products
+      Viewers Also Liked
       </Typography>
       <div className={classes.products}>
         <LoadMask show={!suggestedProducts} />

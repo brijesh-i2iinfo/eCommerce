@@ -31,6 +31,7 @@ import fetchFromAPI from 'react-storefront/props/fetchFromAPI'
 import createLazyProps from 'react-storefront/props/createLazyProps'
 import getAPIURL from 'react-storefront/api/getAPIURL'
 import LazyHydrate from 'react-storefront/LazyHydrate'
+import Banner from '../../components/Banner/banner'
 
 const styles = theme => ({
   carousel: {
@@ -85,6 +86,41 @@ const styles = theme => ({
   },
   bgColor: {
     background: '#f2f2f2',
+    padding: '30px',
+  },
+  productName: {
+    marginTop: '20px',
+    marginBottom: '20px',
+  },
+  offerBtn: {
+    fontSize: '11px',
+    color: 'white',
+    background: '#ff6000',
+    marginBottom: '20px',
+  },
+  modelCategory: {
+    color: '#7d7d7d',
+    marginBottom: '10px',
+  },
+  modelName: {
+    marginBottom: '6px',
+  },
+  productSpecification: {
+    borderTop: '1px dotted rgba(0,0,0,.1)',
+  },
+  productWeight: {
+    borderBottom: '1px dotted rgba(0,0,0,.1)',
+    paddingTop: '10px',
+    paddingBottom: '10px',
+  },
+  productDimensions: {
+    borderBottom: '1px dotted rgba(0,0,0,.1)',
+    paddingTop: '10px',
+    paddingBottom: '10px',
+    background: 'rgba(0,0,0,.025)',
+  },
+  leftContainer: {
+    padding: '30px',
   },
 })
 
@@ -160,10 +196,30 @@ const Product = React.memo(lazyProps => {
         </Typography>
         {/* <Rating value={product.rating} reviewCount={10} /> */}
       </Hbox>
-      <Typography variant="h4" component="h1" gutterBottom>
+      <Typography variant="h5" component="h3" className={classes.productName}>
         {product ? <Text bind="product.name" /> : <Skeleton style={{ height: '1em' }} />}
       </Typography>
-      <Button variant="contained">LAST 20 PRODUCTS - SPECIAL OFFER</Button>
+      <Button variant="contained" className={classes.offerBtn}>
+        LAST 20 PRODUCTS - SPECIAL OFFER
+      </Button>
+      <div className={classes.modelCategory}>
+        <div className={classes.modelName}>
+          <span>SKU: WD234KKL</span>
+        </div>
+        <span>
+          Category: <a>Accessories</a>
+        </span>
+      </div>
+      <div className={classes.productSpecification}>
+        <div className={classes.productWeight}>
+          <span style={{ fontWeight: 'bold', marginRight: '25px' }}>Weight</span>
+          <span style={{ color: '#7d7d7d' }}>2kg</span>
+        </div>
+        <div className={classes.productDimensions}>
+          <span style={{ fontWeight: 'bold', marginRight: '25px' }}>Dimensions</span>
+          <span style={{ color: '#7d7d7d' }}>2 × 2 × 2 cm</span>
+        </div>
+      </div>
     </Row>
   )
 
@@ -191,18 +247,18 @@ const Product = React.memo(lazyProps => {
       )}
       {!loading && <TrackPageView />}
       <Breadcrumbs items={!loading && state.pageData.breadcrumbs} />
-      <Container maxWidth="lg" style={{ paddingTop: theme.spacing(2) }}>
+      <div maxWidth="lg">
         <form
           encType="application/x-www-form-urlencoded"
           onSubmit={handleSubmit}
           method="post"
           action-xhr="/api/cart/add"
         >
-          <Grid container spacing={4}>
+          <Grid container style={{ borderBottom: '1px solid #e2e2e2' }}>
             <HiddenInput name="id" bind="product.id" />
             <HiddenInput name="sku" bind="product.sku" />
             <HiddenInput name="isConfigurableProduct" bind="product.isConfigurableProduct" />
-            <Grid item xs={12} sm={6} md={5}>
+            <Grid item xs={12} sm={6} md={5} className={classes.leftContainer}>
               <Hidden implementation="css" smUp>
                 {header}
               </Hidden>
@@ -262,12 +318,12 @@ const Product = React.memo(lazyProps => {
                       </div>
                     )}
                   </Grid>
-                  <Grid item xs={12}>
+                  <Grid item>
                     {product ? (
                       <>
                         {hasSizes && (
                           <>
-                            <Hbox style={{ marginBottom: 10 }}>
+                            {/* <Hbox style={{ marginBottom: 10 }}>
                               <Label>SIZE: </Label>
                               <Typography>
                                 <HiddenInput name="size" bind="size.id" />
@@ -277,18 +333,18 @@ const Product = React.memo(lazyProps => {
                             <ProductOptionSelector
                               strikeThroughDisabled
                               bind={{ value: 'size', options: 'product.sizes' }}
-                            />
+                            /> */}
                           </>
                         )}
                       </>
                     ) : (
                       <div>
-                        <Skeleton style={{ height: 14, marginBottom: theme.spacing(2) }}></Skeleton>
+                        {/* <Skeleton style={{ height: 14, marginBottom: theme.spacing(2) }}></Skeleton>
                         <Hbox>
                           <Skeleton style={{ height: 48, width: 48, marginRight: 10 }}></Skeleton>
                           <Skeleton style={{ height: 48, width: 48, marginRight: 10 }}></Skeleton>
                           <Skeleton style={{ height: 48, width: 48, marginRight: 10 }}></Skeleton>
-                        </Hbox>
+                        </Hbox> */}
                       </div>
                     )}
                   </Grid>
@@ -326,7 +382,7 @@ const Product = React.memo(lazyProps => {
             </Grid>
           </Grid>
           <LazyHydrate id="info" on="fui">
-            <>
+            <Container>
               <Grid item xs={12}>
                 <TabPanel>
                   <CmsSlot label="Description">{product.description}</CmsSlot>
@@ -340,10 +396,13 @@ const Product = React.memo(lazyProps => {
                   </Lazy>
                 </Grid>
               )}
-            </>
+            </Container>
           </LazyHydrate>
         </form>
-      </Container>
+      </div>
+      <div style={{ marginTop: '60px', marginBottom: '60px' }}>
+        <Banner />
+      </div>
     </DataBindingProvider>
   )
 })
