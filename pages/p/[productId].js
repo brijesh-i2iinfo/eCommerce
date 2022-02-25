@@ -32,6 +32,10 @@ import createLazyProps from 'react-storefront/props/createLazyProps'
 import getAPIURL from 'react-storefront/api/getAPIURL'
 import LazyHydrate from 'react-storefront/LazyHydrate'
 import Banner from '../../components/Banner/banner'
+import Footer from '../../components/Footer/footer'
+import { RoomService } from '@material-ui/icons'
+import ServiceProvide from '../../components/ServiceProvide/serviceProvide'
+import Blog from '../../components/Blog&News/blog'
 
 const styles = theme => ({
   carousel: {
@@ -402,6 +406,12 @@ const Product = React.memo(lazyProps => {
       </div>
       <div style={{ marginTop: '60px', marginBottom: '60px' }}>
         <Banner />
+      </div>
+      <div>
+        <ServiceProvide />
+      </div>
+      <div>
+        <Blog />
       </div>
     </DataBindingProvider>
   )
