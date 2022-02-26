@@ -1,6 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Container, Grid } from '@material-ui/core'
+import Image from 'next/image'
 
 const useStyles = makeStyles({
   limited_offer: {
@@ -110,7 +111,14 @@ function Banner() {
                 <span className={classes.subTitle}>exclusive offer</span>
                 <h2 className={classes.title}>Smart Watch Bracelet</h2>
               </div>
-              <div className={classes.limited_off_disc}></div>
+              <div className={classes.limited_off_disc}>
+                <Image
+                  src="/assets/image/limited_offer_discount.png"
+                  alt="img"
+                  width="74"
+                  height="74"
+                />
+              </div>
             </div>
           </Grid>
           <Grid xl={3} lg={4} md={5}>
