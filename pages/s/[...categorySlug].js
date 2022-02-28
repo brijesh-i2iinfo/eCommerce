@@ -22,6 +22,7 @@ import { TrackPageView } from 'react-storefront-analytics'
 import fetchFromAPI from 'react-storefront/props/fetchFromAPI'
 import createLazyProps from 'react-storefront/props/createLazyProps'
 import LandingCmsSlots from '../../components/LandingCmsSlots'
+import CarouselBanner from '../../components/CarouselBanner/CarouselBanner'
 
 const useStyles = makeStyles(theme => ({
   sideBar: {
@@ -213,7 +214,8 @@ const Subcategory = lazyProps => {
           </Hbox>
         </Container>
       </SearchResultsProvider>
-    </DataBindingProvider>
+      <CarouselBanner />
+      </DataBindingProvider>
   )
 }
 

@@ -36,6 +36,7 @@ import Footer from '../../components/Footer/footer'
 import { RoomService } from '@material-ui/icons'
 import ServiceProvide from '../../components/ServiceProvide/serviceProvide'
 import Blog from '../../components/Blog&News/blog'
+import DealsDay from '../../components/DealsOfTheDay/dealsDay'
 
 const styles = theme => ({
   carousel: {
@@ -222,7 +223,7 @@ const Product = React.memo(lazyProps => {
         <div className={classes.productDimensions}>
           <span style={{ fontWeight: 'bold', marginRight: '25px' }}>Dimensions</span>
           <span style={{ color: '#7d7d7d' }}>2 × 2 × 2 cm</span>
-        </div>
+        </div>  
       </div>
     </Row>
   )
@@ -404,6 +405,7 @@ const Product = React.memo(lazyProps => {
           </LazyHydrate>
         </form>
       </div>
+
       <div style={{ marginTop: '60px', marginBottom: '60px' }}>
         <Banner />
       </div>
@@ -413,6 +415,10 @@ const Product = React.memo(lazyProps => {
       <div>
         <Blog />
       </div>
+      <div>
+        <DealsDay />
+      </div>
+      <Footer />
     </DataBindingProvider>
   )
 })

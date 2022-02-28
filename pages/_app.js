@@ -30,7 +30,7 @@ export default function MyApp({ Component, pageProps }) {
   useJssStyles()
   const classes = useStyles()
   const [appData] = useAppStore(pageProps || {})
-console.log("appData", appData);
+  console.log('appData', appData)
   // Setting global clientDidNavigate which is used by RSF LazyHydrate
   useEffect(() => {
     Router.events.on('routeChangeStart', url => {
